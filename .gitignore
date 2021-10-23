@@ -1,0 +1,4 @@
+/NER_Service/logs/
+/dataset
+__pycache__
+.idea
