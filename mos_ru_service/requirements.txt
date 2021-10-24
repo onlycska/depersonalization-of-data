@@ -1,0 +1,5 @@
+flask~=2.0.2
+flask-bootstrap~=3.3.7.1
+flask-moment~=1.0.2
+salsa20~=0.3.0
+requests~=2.25.1

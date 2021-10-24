@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% import "bootstrap/wtf.html" as wtf %}
+
+{% block title %}Официальный сайт Мэра Москвы{% endblock %}
+
+{% block page_content %}
+<div class="page-header">
+    <h1>Для деперсонализации данных загрузите файл в форму ниже</h1>
+</div>
+
+<form action = "/upload" method = "POST" enctype = "multipart/form-data">
+    <input type = "file" name = "file" autocomplete="off" required/>
+    <button type="submit" class="btn btn-primary" style="background-color: #DC143C; border-color: #DC143C">Submit</button>
+</form>
+
+{% endblock %}

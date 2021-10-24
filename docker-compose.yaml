@@ -1,0 +1,40 @@
+version: "3.9"  # optional since v1.27.0
+
+networks:
+  mos_ru:
+
+services:
+  mos_ru:
+    build: ./mos_ru_service
+    container_name: mos_ru
+    networks:
+      - mos_ru
+    ports:
+      - "5000:5000"
+    volumes:
+      - ./logs/mos_ru_service:/usr/src/mos_ru_service/logs
+      - picture-volume:/usr/src/mos_ru_service/uploaded
+    links:
+      - ocr
+  ner:
+    build: ./ner_service
+    container_name: ner
+    networks:
+      - mos_ru
+    ports:
+      - "5001:5001"
+    volumes:
+      - ./logs/ner_service:/usr/src/ner_service/logs
+  ocr:
+    build: ./ocr_service
+    container_name: ocr
+    networks:
+      - mos_ru
+    ports:
+      - "5002:80"
+    volumes:
+      - ./logs/ocr_service:/app/logs
+      - picture-volume:/data
+  
+volumes:
+    picture-volume:
