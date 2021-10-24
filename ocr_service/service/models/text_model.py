@@ -6,6 +6,7 @@ from pydantic import BaseModel
 class TextModel(BaseModel):
     image_path: str
     text: str
+    boxes_map: List[int] = []
     b_boxes_x_tl: List[int] = []
     b_boxes_y_tl: List[int] = []
     b_boxes_x_br: List[int] = []
