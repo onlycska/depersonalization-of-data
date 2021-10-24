@@ -27,12 +27,14 @@ def process_image(image_path: str):
 
     blocks = df.drop_duplicates(subset=['block_num'])['block_num'].tolist()
     text = ""
+    boxes_map = []
     for block in blocks:
         block_df = df.where(df['block_num'] == block).dropna()
         block_words = block_df['text'].tolist()
         block_words_lines = block_df['line_num'].tolist()
         curr_lnum = block_words_lines[0]
         for word, line in zip(block_words, block_words_lines):
+            boxes_map.append(len(text))
             if line != curr_lnum:
                 text += "\n"
                 curr_lnum = line
@@ -50,6 +52,7 @@ def process_image(image_path: str):
     result = {
         "image_path": image_path,
         "text": text,
+        "boxes_map": boxes_map,
         "b_boxes_x_tl": x_top_left,
         "b_boxes_y_tl": y_top_left,
         "b_boxes_x_br": x_bottom_right,
